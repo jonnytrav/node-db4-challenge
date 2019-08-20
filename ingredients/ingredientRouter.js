@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const DB = require("./recipeHelpers");
+const DB = require("./ingredientHelpers.js");
 
 router.get("/", async (req, res) => {
   try {
-    const recipes = await DB.getRecipes();
-    res.status(200).json(recipes);
+    const ingredients = await DB.findIngredients();
+    res.status(200).json(ingredients);
   } catch (err) {
     res.status(400).json(err.message);
   }

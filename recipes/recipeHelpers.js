@@ -1,9 +1,9 @@
 const DB = require("../DBconfig.js");
 
 module.exports = {
-  find
+  getRecipes
 };
 
-function find() {
+function getRecipes() {
   return DB("recipes");
 }
