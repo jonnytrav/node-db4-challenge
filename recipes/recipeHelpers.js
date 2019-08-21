@@ -2,7 +2,8 @@ const DB = require("../DBconfig.js");
 
 module.exports = {
   getRecipes,
-  getShoppingList
+  getShoppingList,
+  getInstructions
 };
 
 function getRecipes() {
@@ -10,5 +11,13 @@ function getRecipes() {
 }
 
 function getShoppingList(id) {
-  return DB("recipe_ingredients").where("recipe_id", `${id}`);
+  return DB("recipe_ingredients")
+    .where("recipe_id", `${id}`)
+    .select("ingredient_id", "quantity");
+}
+
+function getInstructions(id) {
+  return DB("recipes")
+    .where({ id })
+    .select("instructions");
 }

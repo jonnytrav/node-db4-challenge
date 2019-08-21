@@ -20,4 +20,15 @@ router.get("/:id/ingredients", async (req, res) => {
     res.status(400).json(err.message);
   }
 });
+
+router.get("/:id/steps", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const steps = await DB.getInstructions(id);
+    res.status(200).json(steps);
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+});
+
 module.exports = router;
