@@ -11,4 +11,13 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id/ingredients", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const groceries = await DB.getShoppingList(id);
+    res.status(200).json(groceries);
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+});
 module.exports = router;
